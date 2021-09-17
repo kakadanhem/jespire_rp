@@ -41,6 +41,7 @@ class PermissionComponent extends Component
 
     public function store()
     {
+        $this->selected = 0;
         $this->validate();
         Permission::create([
             'name' => $this->name,
