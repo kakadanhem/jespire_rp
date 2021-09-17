@@ -15,7 +15,7 @@ class PermissionController extends Controller
     }
 
     public function index(){
-        $this->authorize('manage', Permission::class);
+        //$this->authorize('manage', Permission::class);
         $columns = array('Name', 'Created Date');
         $permissions = Permission::all();
         return view('permission.index', [

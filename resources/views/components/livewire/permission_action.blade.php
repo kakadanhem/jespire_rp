@@ -17,7 +17,7 @@
     <x-slot name="actions">
         <x-button wire:click="{{ $function }}" type="{{ $type }}" label="{{ $label }}" class="{{ $btclass }}"/>
         @if(isset($edit))
-            <x-livewire.button wire:click="clear()" label="Cancel" type="refresh" class="ml-2"/>
+            <x-button wire:click="clear()" label="Cancel" type="refresh" class="ml-2"/>
         @endif
     </x-slot>
 </x-form-simple>

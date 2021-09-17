@@ -1,4 +1,4 @@
-<x-list-layout-s>
+<x-layouts.forms>
     <x-slot name="action">
         @if($update)
             <x-livewire.role_action function="update()" :edit="$update" :permissions="$permissions" type="edit" label="Update" btclass="bg-green-500 hover:bg-green-700"></x-livewire.role_action>
@@ -40,4 +40,4 @@
         </tbody>
     </table>
 
-</x-list-layout-s>
+</x-layouts.forms>

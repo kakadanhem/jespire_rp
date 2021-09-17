@@ -1,12 +1,4 @@
-<x-list-layout-s>
-    <x-slot name="action">
-        @if($updateMode)
-            <x-livewire.permission_action function="update()" :edit="$updateMode" type="edit" label="Update" btclass="bg-green-500 hover:bg-green-700"></x-livewire.permission_action>
-        @else
-            <x-livewire.permission_action function="store()" label="Create" type="add" btclass="bg-blue-500 hover:bg-blue-700"></x-livewire.permission_action>
-        @endif
-    </x-slot>
-
+<div class="bg-white shadow rounded p-5">
     <table class="min-w-full table-fixed">
         <thead>
         <tr>
@@ -41,5 +33,4 @@
         @endforeach
         </tbody>
     </table>
-
-</x-list-layout-s>
+</div>

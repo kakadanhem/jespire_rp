@@ -47,6 +47,7 @@ class RoleComponent extends Component
 
     public function store()
     {
+        $this->selected = 0;
         $this->validate();
         $role = Role::create([
             'name' => $this->name,

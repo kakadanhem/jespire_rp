@@ -4,7 +4,9 @@
             {{ __('main.manage') }} {{ __('main.permission') }}s
         </h2>
     </x-slot>
-    <div class="py-10">
-        @livewire('permission-component')
+    <div class="max-w-7xl mx-auto py-10">
+        @livewire('permission.form')
+        <x-jet-section-border />
+        @livewire('permission.listing')
     </div>
 </x-app-layout>

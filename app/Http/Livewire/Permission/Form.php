@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Permission;
 
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 
-class PermissionComponent extends Component
+class Form extends Component
 {
-    public $data, $name, $selected, $columns;
+    public $name, $selected;
     public $updateMode = false;
 
     protected $rules = [
@@ -15,12 +15,10 @@ class PermissionComponent extends Component
         'selected' => 'required|numeric',
     ];
 
-    public function render()
-    {
-        $this->data = Permission::all();
-        $this->columns = array('Name', 'Created At');
-        return view('livewire.permission.component');
-    }
+    protected $listeners = [
+        'editClicked' => 'edit',
+        'destroyClicked' => 'destroy'
+    ];
 
     private function resetInput()
     {
@@ -46,13 +44,14 @@ class PermissionComponent extends Component
         Permission::create([
             'name' => $this->name,
         ]);
-        session()->flash('success', 'Permission successfully created.');
         $this->resetInput();
+        $this->emit('saved');
+        $this->emitTo('permission.listing', 'refreshPermissions');
     }
 
     public function edit($id)
     {
-        $record = Permission::findOrFail($id);
+        $record = Permission::findById($id);
         $this->selected = $id;
         $this->name = $record->name;
         $this->updateMode = true;
@@ -70,10 +69,12 @@ class PermissionComponent extends Component
             $record->update([
                 'name' => $this->name,
             ]);
-            session()->flash('success', "The $this->name permission successfully updated.");
+            $this->emit('saved');
+            $this->emitTo('permission.listing', 'refreshPermissions');
             $this->resetInput();
             $this->updateMode = false;
         }
+
     }
 
     public function destroy($id)
@@ -82,9 +83,13 @@ class PermissionComponent extends Component
             $record = Permission::findOrFail($id);
             $name = $record->name;
             $record->delete();
-            session()->flash('warning', "The $name permission successfully deleted.");
-
+            $this->emit('saved');
+            $this->emitTo('permission.listing', 'refreshPermissions');
         }
+    }
 
+    public function render()
+    {
+        return view('livewire.permission.form');
     }
 }
