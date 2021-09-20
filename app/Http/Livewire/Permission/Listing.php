@@ -28,6 +28,6 @@ class Listing extends Component
     }
     public function destroy($id)
     {
-        $this->emitTo('permission.form', 'destroyClicked', [$id]);
+        $this->emitTo('permission.form', 'destroyClicked', $id);
     }
 }

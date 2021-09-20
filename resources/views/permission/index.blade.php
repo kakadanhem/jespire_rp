@@ -4,7 +4,7 @@
             {{ __('main.manage') }} {{ __('main.permission') }}s
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto py-10">
+    <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         @livewire('permission.form')
         <x-jet-section-border />
         @livewire('permission.listing')
